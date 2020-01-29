@@ -15,6 +15,7 @@ import (
 	"path"
 	"path/filepath"
 	"strconv"
+	"syscall"
 	"time"
 
 	"github.com/lyraproj/dgo/dgo"
@@ -116,7 +117,7 @@ func startServer(listener net.Listener, router http.Handler, functions dgo.Map, 
 	done := make(chan bool, 1)
 	// Allow graceful shutdown of server
 	quit := make(chan os.Signal, 1)
-	signal.Notify(quit, os.Interrupt)
+	signal.Notify(quit, os.Interrupt, syscall.SIGINT)
 	go func() {
 		<-quit
 		ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
