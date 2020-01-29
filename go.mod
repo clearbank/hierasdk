@@ -1,4 +1,4 @@
-module github.com/lyraproj/hierasdk
+module github.com/clearbank/hierasdk
 
 require github.com/lyraproj/dgo v0.2.0
 
